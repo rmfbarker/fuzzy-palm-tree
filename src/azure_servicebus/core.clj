@@ -1,9 +1,9 @@
 (ns azure-servicebus.core
-  (:require [dotty.core :refer [env]])
+  (:require [azure-servicebus.config :as config])
   (:gen-class)
   (:import (com.azure.messaging.servicebus ServiceBusClientBuilder ServiceBusMessage)))
 
-(def conn-str (env "SB_CONN_STR"))
+(def conn-str (config/get-sb-conn-str))
 
 (def builder (-> (ServiceBusClientBuilder.)
                  (.connectionString conn-str)))
